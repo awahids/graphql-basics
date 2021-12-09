@@ -5,6 +5,7 @@ const wrapper = require('./resolvers');
 const schemaBook = require('./typeDefs/BookTypeDefs');
 
 const books = wrapper.books;
+const getBookByYear = wrapper.getBookByYear;
 
 const createBook = wrapper.createBook;
 const updateBook = wrapper.updateBook;
@@ -17,7 +18,8 @@ const schema = makeExecutableSchema({
 
     resolvers: {
         Query: {
-            books
+            books,
+            getBookByYear
         },
 
         Mutation: {

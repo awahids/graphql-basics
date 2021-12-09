@@ -9,5 +9,16 @@ module.exports = {
         } catch (error) {
             throw error
         }
+    },
+
+    getBookByYear: async (parents, {year}, ctx, info) => {
+        try {
+            const books = await Book.find({ year: { $gt: year}})
+            
+            return books
+        } catch (error) {
+            console.log("🚀 ~ file: BookQuery.js ~ line 20 ~ getBookByYear: ~ error", error)
+            throw error
+        }
     }
 }

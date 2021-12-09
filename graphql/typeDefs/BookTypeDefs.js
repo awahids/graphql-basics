@@ -21,6 +21,11 @@ const typeDefs = `
         id: ID!
     }
 
+    type ProjectRespon {
+        bookName: String!
+        year: Int!
+    }
+
     type Book {
         id: ID!
         bookName: String!
@@ -30,6 +35,7 @@ const typeDefs = `
 
     type Query {
         books: [Book]
+        getBookByYear(year: Int!): [ProjectRespon]
     }
 `;
 

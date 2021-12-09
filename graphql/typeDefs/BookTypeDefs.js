@@ -6,9 +6,10 @@ const typeDefs = `
     }
 
     input CreateBookInput {
+        shelfId: ID!
         bookName: String!
         author: String!
-        year: Int
+        year: Int!
     }
 
     input UpdateBookInput {
@@ -30,12 +31,13 @@ const typeDefs = `
         id: ID!
         bookName: String!
         author: String!
-        year: Int
+        year: Int!
+        shelfId: [BookShelf]
     }
 
     type Query {
-        books: [Book]
-        getBookByYear(year: Int!): [ProjectRespon]
+        books: [Book!]
+        getBookByYear(year: Int!): [ProjectRespon!]!
     }
 `;
 

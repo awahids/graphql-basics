@@ -17,6 +17,11 @@ const BookSchema = new Schema({
     type: Number,
     required: true,
   },
+
+  shelfId: {
+    type: Schema.Types.ObjectId,
+    ref: "BookShelf",
+  },
 });
 
 module.exports = Book = Mongoose.model("Book", BookSchema);

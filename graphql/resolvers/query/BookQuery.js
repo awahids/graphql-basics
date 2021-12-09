@@ -17,7 +17,6 @@ module.exports = {
             
             return books
         } catch (error) {
-            console.log("🚀 ~ file: BookQuery.js ~ line 20 ~ getBookByYear: ~ error", error)
             throw error
         }
     }

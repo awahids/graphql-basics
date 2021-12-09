@@ -1,9 +1,9 @@
 const Book = require('../../../models/bookSchema');
 
 module.exports = {
-    books: async (parents, args, ctx, info) => {
+    books: async (parents, {limit, offset}, ctx, info) => {
         try {
-            const books = await Book.find().exec()
+            const books = await Book.find({}).limit(parseInt(limit)).skip(parseInt(offset)).exec()
 
             return books
         } catch (error) {
@@ -13,7 +13,20 @@ module.exports = {
 
     getBookByYear: async (parents, {year}, ctx, info) => {
         try {
-            const books = await Book.find({ year: { $gt: year}})
+            const books = await Book.aggregate([
+                {
+                    $project: {
+                        bookName: 1,
+                        year: 1,
+                        author: 1,
+                        yearGt: {
+                            $gt: ["$year", year]
+                        },
+                        _id: 0
+                    }
+                }
+            ])
+                // .find({ year: { $gt: year } })
             
             return books
         } catch (error) {

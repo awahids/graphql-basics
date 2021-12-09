@@ -1,8 +1,8 @@
 const typeDefs = `
     type Mutation {
-        createShelf(data: CreateShelfInput): Shelf!
-        deleteShelf(id: ID!): DeleteRespon!
-        updateShelf(id: ID!, data: UpdateShelfInput!): Shelf!
+        createShelf(data: CreateShelfInput): BookShelf!
+        deleteShelf(id: ID!): DeleteShelf!
+        updateShelf(id: ID!, data: UpdateShelfInput!): BookShelf!
     }
 
     input CreateShelfInput {
@@ -14,7 +14,7 @@ const typeDefs = `
         ShelfName: String!
     }
 
-    type DeleteRespon {
+    type DeleteShelf {
         id: ID!
     }
 
@@ -25,7 +25,7 @@ const typeDefs = `
     }
 
     type Query {
-        Shelfs: [BookShelf]
+        shelfs: [BookShelf]
     }
 `;
 

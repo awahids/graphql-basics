@@ -10,6 +10,8 @@ const getBookByYear = wrapper.getBookByYear;
 
 const shelfs = wrapper.shelfs
 
+const createShelf = wrapper.createShelf
+
 const createBook = wrapper.createBook;
 const updateBook = wrapper.updateBook;
 const deleteBook = wrapper.deleteBook;
@@ -30,7 +32,9 @@ const schema = makeExecutableSchema({
         Mutation: {
             createBook,
             updateBook,
-            deleteBook
+            deleteBook,
+
+            createShelf
         }
     }
 })

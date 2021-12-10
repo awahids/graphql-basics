@@ -1,7 +1,7 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-const BookShelfSchema = new Schema({
+const BookShelfsSchema = new Schema({
   shelfName: {
     type: String,
     required: true,
@@ -10,9 +10,9 @@ const BookShelfSchema = new Schema({
   bookId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Books",
+      ref: "Book",
     },
   ],
 });
 
-module.exports = BookShelf = Mongoose.model("BookShelf", BookShelfSchema);
+module.exports = BookShelfs = Mongoose.model("BookShelfs", BookShelfsSchema);

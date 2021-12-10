@@ -3,9 +3,10 @@ const typeDefs = `
         createBook(data: CreateBookInput): Book!
         deleteBook(id: ID!): DeleteRespon!
         updateBook(id: ID!, data: UpdateBookInput!): Book!
-        createShelf(data: CreateShelfInput): BookShelf!
+
+        createShelf(data: CreateShelfInput): BookShelfs!
         deleteShelf(id: ID!): DeleteShelf!
-        updateShelf(id: ID!, data: UpdateShelfInput!): BookShelf!
+        updateShelf(id: ID!, data: UpdateShelfInput!): BookShelfs!
     }
 
     input CreateBookInput {
@@ -16,8 +17,7 @@ const typeDefs = `
     }
 
     input CreateShelfInput {
-        ShelfName: String!
-        bookId: ID
+        shelfName: String!
     }
 
     input UpdateBookInput {
@@ -27,7 +27,7 @@ const typeDefs = `
     }
 
     input UpdateShelfInput {
-        ShelfName: String!
+        shelfName: String!
     }
 
     type DeleteRespon {
@@ -49,18 +49,25 @@ const typeDefs = `
         bookName: String!
         author: String!
         year: Int!
-        shelfId: [BookShelf]
+        shelfId: ID
+    }
+    
+    type BookCollect {
+        _id: ID!
+        bookName: String!
+        author: String!
+        year: Int!
     }
 
-    type BookShelf {
-        id: ID!
-        ShelfName: String!
-        bookId: [Book!]!
+    type BookShelfs {
+        _id: ID!
+        shelfName: String!
+        bookId: [BookCollect!]
     }
 
     type Query {
         books(limit: Int, offset: Int): [Book!]
-        shelfs: [BookShelf]
+        shelfs: [BookShelfs]
         getBookByYear(year: Int!): [ProjectRespon!]!
     }
 `;

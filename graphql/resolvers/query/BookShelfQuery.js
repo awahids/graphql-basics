@@ -1,9 +1,9 @@
-const BookShelf = require('../../../models/bookshelfs.model');
+const BookShelfs = require('../../../models/bookshelfs.model');
 
 module.exports = {
     shelfs: async (parents, args, ctx, info) => {
         try {
-            const shelfs = await BookShelf.find().exec()
+            const shelfs = await BookShelfs.find().exec()
 
             return shelfs
         } catch (error) {

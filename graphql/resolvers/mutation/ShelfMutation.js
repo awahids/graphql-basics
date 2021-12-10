@@ -14,5 +14,32 @@ module.exports = {
         } catch (error) {
             throw error
         }
+    },
+
+    addBookIdByAddFields: async (parent, {_id, data}, ctx, info) => {
+        // const {_id, ...data} = args
+        try {
+            const findShelf = await BookShelfs.find({_id})
+            await BookShelfs.aggregate([
+                { $match: { _id: findShelf } },
+                {
+                    $addFields: {
+                        // "bookId": args.data.bookId
+                        bookId: {
+                            $concatArrays: ["$bookId", [...data]]
+                        }
+                    }
+                }
+            ])
+            console.log("🚀 ~ file: ShelfMutation.js ~ line 25 ~ addBookIdByAddFields: ~ findShelf._id", findShelf)
+
+            return {
+                _id,
+                ...data
+            }
+        } catch (error) {
+            console.log("🚀 ~ file: ShelfMutation.js ~ line 34 ~ addBookIdByAddFields: ~ error", error)
+            throw error
+        }
     }
 }

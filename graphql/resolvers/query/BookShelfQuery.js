@@ -11,13 +11,13 @@ module.exports = {
         }
     },
 
-    // getBookByYear: async (parents, {year}, ctx, info) => {
-    //     try {
-    //         const books = await Book.find({ year: { $gt: year}})
+    splitBookAtBookShelfs: async (parent, args, ctx, info) => {
+        try {
+            const splitBook = await BookShelfs.aggregate([{ $unwind: "$bookId" }])
             
-    //         return books
-    //     } catch (error) {
-    //         throw error
-    //     }
-    // }
+            return splitBook
+        } catch (error) {
+            throw error
+        }
+    }
 }

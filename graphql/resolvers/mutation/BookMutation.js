@@ -18,14 +18,14 @@ module.exports = {
         }
     },
 
-    updateBook: async (parent, { id, data }, ctx, info) => {
+    updateBook: async (parent, { _id, data }, ctx, info) => {
         try {
             await Book.updateOne(
-                { _id: id }, { $set: { ...data } }, {new: true}
+                { _id: _id }, { $set: { ...data } }, {new: true}
             ).exec()
 
             return {
-                id,
+                _id,
                 ...data
             }
         } catch (error) {

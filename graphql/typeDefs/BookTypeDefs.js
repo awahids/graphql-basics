@@ -1,12 +1,21 @@
 const typeDefs = `
     type Mutation {
         createBook(data: CreateBookInput): Book!
-        deleteBook(id: ID!): DeleteRespon!
-        updateBook(id: ID!, data: UpdateBookInput!): Book!
+        deleteBook(_id: ID!): DeleteRespon!
+        updateBook(_id: ID!, data: UpdateBookInput!): Book!
 
         createShelf(data: CreateShelfInput): BookShelfs!
-        deleteShelf(id: ID!): DeleteShelf!
-        updateShelf(id: ID!, data: UpdateShelfInput!): BookShelfs!
+        addBookIdByAddFields(_id: ID!, data: [BookIdByAddFieldsInput!]): ResponAddFields!
+        deleteShelf(_id: ID!): DeleteShelf!
+        updateShelf(_id: ID!, data: UpdateShelfInput!): BookShelfs!
+    }
+    
+    input BookIdByAddFieldsInput {
+        bookId: ID!
+    }
+
+    type ResponAddFields {
+        bookId: [BookCollect!]
     }
 
     input CreateBookInput {
@@ -31,11 +40,11 @@ const typeDefs = `
     }
 
     type DeleteRespon {
-        id: ID!
+        _id: ID!
     }
 
     type DeleteShelf {
-        id: ID!
+        _id: ID!
     }
 
     type ProjectRespon {
@@ -45,7 +54,7 @@ const typeDefs = `
     }
 
     type Book {
-        id: ID!
+        _id: ID!
         bookName: String!
         author: String!
         year: Int!
@@ -59,6 +68,12 @@ const typeDefs = `
         year: Int!
     }
 
+    type splitBook {
+        _id: ID!
+        shelfName: String!
+        bookId: ID!
+    }
+
     type BookShelfs {
         _id: ID!
         shelfName: String!
@@ -69,6 +84,7 @@ const typeDefs = `
         books(limit: Int, offset: Int): [Book!]
         shelfs: [BookShelfs]
         getBookByYear(year: Int!): [ProjectRespon!]!
+        splitBookAtBookShelfs: [splitBook!]!
     }
 `;
 

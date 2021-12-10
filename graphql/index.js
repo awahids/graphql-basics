@@ -9,8 +9,10 @@ const books = wrapper.books;
 const getBookByYear = wrapper.getBookByYear;
 
 const shelfs = wrapper.shelfs
+const splitBookAtBookShelfs = wrapper.splitBookAtBookShelfs
 
 const createShelf = wrapper.createShelf
+const addBookIdByAddFields = wrapper.addBookIdByAddFields
 
 const createBook = wrapper.createBook;
 const updateBook = wrapper.updateBook;
@@ -26,7 +28,8 @@ const schema = makeExecutableSchema({
         Query: {
             books,
             getBookByYear,
-            shelfs
+            shelfs,
+            splitBookAtBookShelfs
         },
 
         Mutation: {
@@ -34,7 +37,8 @@ const schema = makeExecutableSchema({
             updateBook,
             deleteBook,
 
-            createShelf
+            createShelf,
+            addBookIdByAddFields
         }
     }
 })

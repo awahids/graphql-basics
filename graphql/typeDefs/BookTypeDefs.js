@@ -48,7 +48,7 @@ const typeDefs = `
     }
 
     type ProjectRespon {
-        bookName: String!
+        authorOfBook: String!
         year: Int!
         yearGt: Boolean!
     }
@@ -85,6 +85,7 @@ const typeDefs = `
         shelfs: [BookShelfs]
         getBookByYear(year: Int!): [ProjectRespon!]!
         splitBookAtBookShelfs: [splitBook!]!
+        getBookByBookName(bookName: String!): [BookCollect!]!
     }
 `;
 

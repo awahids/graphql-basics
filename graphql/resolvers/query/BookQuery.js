@@ -1,4 +1,5 @@
 const Book = require('../../../models/bookSchema');
+const bookshelfsModel = require('../../../models/bookshelfs.model');
 
 module.exports = {
     books: async (parents, {limit, offset}, ctx, info) => {
@@ -22,14 +23,28 @@ module.exports = {
                         yearGt: {
                             $gt: ["$year", year]
                         },
-                        _id: 0
-                    }
-                }
+                        _id: 0,
+                        authorOfBook: {$concat: ["$author", " - ", "$bookName"]}
+                    },
+                },
+                {$sort: {bookName: 1}}
             ])
                 // .find({ year: { $gt: year } })
             
             return books
         } catch (error) {
+            throw error
+        }
+    },
+
+    getBookByBookName: async (parent, {bookName}, ctx, info) => {
+        try {
+            const book = await Book.aggregate([
+                {$match: {bookName: bookName}}
+            ])
+
+            return book
+        } catch {
             throw error
         }
     }

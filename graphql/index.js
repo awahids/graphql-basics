@@ -7,9 +7,10 @@ const schemaBook = require('./typeDefs/BookTypeDefs');
 
 const books = wrapper.books;
 const getBookByYear = wrapper.getBookByYear;
+const getBookByBookName = wrapper.getBookByBookName;
 
-const shelfs = wrapper.shelfs
-const splitBookAtBookShelfs = wrapper.splitBookAtBookShelfs
+const shelfs = wrapper.shelfs;
+const splitBookAtBookShelfs = wrapper.splitBookAtBookShelfs;
 
 const createShelf = wrapper.createShelf
 const addBookIdByAddFields = wrapper.addBookIdByAddFields
@@ -28,6 +29,7 @@ const schema = makeExecutableSchema({
         Query: {
             books,
             getBookByYear,
+            getBookByBookName,
             shelfs,
             splitBookAtBookShelfs
         },

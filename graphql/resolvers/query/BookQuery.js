@@ -76,5 +76,22 @@ module.exports = {
         } catch (error) {
             throw error
         }
+    },
+
+    replaceIdBook: async (parent, args, ctx, info) => {
+        try {
+            const replaceId = await Book.aggregate([
+                {
+                    $addFields: {
+                        _id: "$bookName",
+                        bookName: "book_title"
+                    }
+                }
+            ])
+
+            return replaceId
+        } catch (error) {
+            throw error
+        }
     }
 }

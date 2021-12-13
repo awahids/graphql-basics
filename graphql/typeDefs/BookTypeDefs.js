@@ -92,6 +92,7 @@ const typeDefs = `
         splitBookAtBookShelfs: [splitBook!]!
         getBookByBookName(bookName: String!): [BookCollect!]!
         joinBookAndBookShelf: [JoinLookUp!]!
+        replaceIdBook: [Book!]!
     }
 `;
 

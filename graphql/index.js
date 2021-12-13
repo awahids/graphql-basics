@@ -11,6 +11,7 @@ const getBookByBookName = wrapper.getBookByBookName;
 
 const shelfs = wrapper.shelfs;
 const splitBookAtBookShelfs = wrapper.splitBookAtBookShelfs;
+const joinBookAndBookShelf = wrapper.joinBookAndBookShelf;
 
 const createShelf = wrapper.createShelf
 const addBookIdByAddFields = wrapper.addBookIdByAddFields
@@ -22,7 +23,6 @@ const deleteBook = wrapper.deleteBook;
 const schema = makeExecutableSchema({
     typeDefs: [  
         schemaBook
-        // schemaShelf
     ],
 
     resolvers: {
@@ -31,7 +31,8 @@ const schema = makeExecutableSchema({
             getBookByYear,
             getBookByBookName,
             shelfs,
-            splitBookAtBookShelfs
+            splitBookAtBookShelfs,
+            joinBookAndBookShelf
         },
 
         Mutation: {

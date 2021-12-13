@@ -46,5 +46,35 @@ module.exports = {
         } catch {
             throw error
         }
+    },
+
+    joinBookAndBookShelf: async (parent, args, ctx, info) => {
+        try {
+            const shelfs = await BookShelfs.aggregate([
+                {
+                    $lookup: {
+                        from: "Book",
+                        localField: "book",
+                        foreignField: "book",
+                        as: "fromBook"
+                    }
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            $mergeObjects: [{
+                                $arrayElemAt: ["$fromBook", 0]
+                            }, "$$ROOT"]
+                        }
+                    }
+                },
+                {$project: {fromBook: 0}}
+            ])
+            console.log("🚀 ~ file: BookQuery.js ~ line 73 ~ joinBookAndBookShelf: ~ shelfs", shelfs)
+
+            return shelfs
+        } catch (error) {
+            throw error
+        }
     }
 }

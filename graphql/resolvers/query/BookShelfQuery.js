@@ -19,7 +19,6 @@ module.exports = {
                 { $match: { _id: findShelf } },
                 {
                     $addFields: {
-                        // "bookId": args.data.bookId
                         bookId: {
                             $concatArrays: ["$bookId", [...data]]
                         }

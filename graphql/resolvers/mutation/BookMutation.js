@@ -1,18 +1,35 @@
 const Book = require('../../../models/bookSchema');
+const BookShelfs = require('../../../models/bookshelfs.model');
 
 module.exports = {
-    createBook: async (parent, args, ctx, info) => {
-        try {            
-            const addBook = new Book({
-                bookName: args.data.bookName,
-                author: args.data.author,
-                year: args.data.year
-            })
+    createBook: async (parent, { _id, bookName, data }, ctx, info) => {
+        try {
+            const findShelf = await BookShelfs.findById({_id}).exec()
 
-            const saveBook = await addBook.save()
-            console.log("🚀 ~ file: BookMutation.js ~ line 13 ~ createBook: ~ saveBook", saveBook)
+            if (!findShelf) {
+                throw new Error("Cannot find bookshelf")
+            }
 
-            return saveBook
+            const findBook = await Book.findOne({ bookName })
+            
+            if (findBook) {
+                throw new Error("book already exists")
+            }
+            
+            const addBook = await Book.create({shelfId: _id, ...data})
+            await BookShelfs.updateOne(
+                { _id: findShelf },
+                {
+                    $push: {
+                        bookId: addBook._id
+                    }
+                }
+            )
+
+            return {
+                _id,
+                ...data
+            }
         } catch (error) {
             return error.message
         }

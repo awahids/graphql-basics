@@ -29,7 +29,6 @@ module.exports = {
                 },
                 {$sort: {bookName: 1}}
             ])
-                // .find({ year: { $gt: year } })
             
             return books
         } catch (error) {

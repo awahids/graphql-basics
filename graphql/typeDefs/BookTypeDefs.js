@@ -1,6 +1,6 @@
 const typeDefs = `
     type Mutation {
-        createBook(data: CreateBookInput): Book!
+        createBook(_id: ID!, data: CreateBookInput): Book!
         deleteBook(_id: ID!): DeleteRespon!
         updateBook(_id: ID!, data: UpdateBookInput!): Book!
 
@@ -19,7 +19,6 @@ const typeDefs = `
     }
 
     input CreateBookInput {
-        shelfId: ID!
         bookName: String!
         author: String!
         year: Int!
@@ -82,7 +81,7 @@ const typeDefs = `
 
     type Query {
         books(limit: Int, offset: Int): [Book!]
-        shelfs: [BookShelfs]
+        shelfs: [BookShelfs!]!
         getBookByYear(year: Int!): [ProjectRespon!]!
         splitBookAtBookShelfs: [splitBook!]!
         getBookByBookName(bookName: String!): [BookCollect!]!

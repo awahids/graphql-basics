@@ -7,6 +7,18 @@ const typeDefs = `
         createShelf(data: CreateShelfInput): BookShelfs!
         deleteShelfById(_id: ID!): DeleteShelf!
         updateShelf(_id: ID!, data: UpdateShelfInput!): BookShelfs!
+
+        signUp(data: SignUpInput): User!
+    }
+
+    type Query {
+        books(limit: Int, offset: Int): [Book!]
+        shelfs: [BookShelfs!]!
+        getBookByYear(year: Int!): [ProjectRespon!]!
+        splitBookAtBookShelfs: [splitBook!]!
+        getBookByBookName(bookName: String!): [BookCollect!]!
+        joinBookAndBookShelf: [JoinLookUp!]!
+        replaceIdBook: [Book!]!
     }
     
     input BookIdByAddFieldsInput {
@@ -84,14 +96,17 @@ const typeDefs = `
         shelfName: String!
     }
 
-    type Query {
-        books(limit: Int, offset: Int): [Book!]
-        shelfs: [BookShelfs!]!
-        getBookByYear(year: Int!): [ProjectRespon!]!
-        splitBookAtBookShelfs: [splitBook!]!
-        getBookByBookName(bookName: String!): [BookCollect!]!
-        joinBookAndBookShelf: [JoinLookUp!]!
-        replaceIdBook: [Book!]!
+    type User {
+        _id: ID!
+        email: String!
+        name: String!
+        password: String!
+    }
+
+    input SignUpInput {
+        email: String!
+        password: String!
+        name: String!
     }
 `;
 

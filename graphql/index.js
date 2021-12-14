@@ -11,9 +11,10 @@ const getBookByBookName         = wrapper.getBookByBookName;
 const shelfs                    = wrapper.shelfs;
 const splitBookAtBookShelfs     = wrapper.splitBookAtBookShelfs;
 const joinBookAndBookShelf      = wrapper.joinBookAndBookShelf;
+const replaceIdBook             = wrapper.replaceIdBook;
 
 const createShelf               = wrapper.createShelf;
-const replaceIdBook             = wrapper.replaceIdBook;
+const updateShelf               = wrapper.updateShelf
 
 const createBook                = wrapper.createBook;
 const updateBook                = wrapper.updateBook;
@@ -40,7 +41,8 @@ const schema = makeExecutableSchema({
             updateBook,
             deleteBook,
 
-            createShelf
+            createShelf,
+            updateShelf
         }
     }
 })

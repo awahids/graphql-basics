@@ -1,5 +1,5 @@
 const { createBook, updateBook, deleteBook } = require('./mutation/BookMutation');
-const {createShelf} = require('./mutation/ShelfMutation');
+const {createShelf, updateShelf} = require('./mutation/ShelfMutation');
 const { books, getBookByYear, getBookByBookName, joinBookAndBookShelf, replaceIdBook } = require('./query/BookQuery');
 const {shelfs, splitBookAtBookShelfs} = require('./query/BookShelfQuery');
 
@@ -16,4 +16,5 @@ module.exports = {
     shelfs,
     splitBookAtBookShelfs,
     createShelf,
+    updateShelf
 }

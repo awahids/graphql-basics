@@ -5,7 +5,6 @@ const typeDefs = `
         updateBook(_id: ID!, data: UpdateBookInput!): Book!
 
         createShelf(data: CreateShelfInput): BookShelfs!
-        addBookIdByAddFields(_id: ID!, data: [BookIdByAddFieldsInput!]): ResponAddFields!
         deleteShelf(_id: ID!): DeleteShelf!
         updateShelf(_id: ID!, data: UpdateShelfInput!): BookShelfs!
     }

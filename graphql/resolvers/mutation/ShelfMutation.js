@@ -1,4 +1,3 @@
-const { deleteOne } = require("../../../models/bookshelfs.model");
 const BookShelfs = require("../../../models/bookshelfs.model");
 
 module.exports = {

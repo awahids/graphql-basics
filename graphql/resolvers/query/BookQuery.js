@@ -1,4 +1,4 @@
-const Book = require("../../../models/bookSchema");
+const Book = require("../../../models/book.model");
 const bookshelfsModel = require("../../../models/bookshelfs.model");
 
 module.exports = {

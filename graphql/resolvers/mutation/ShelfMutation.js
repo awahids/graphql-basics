@@ -23,7 +23,7 @@ module.exports = {
     updateShelf: async (parent, {_id, data}, ctx, info) => {
         try {
             const findShelf = await BookShelfs.findById({_id: _id})
-            console.log("🚀 ~ file: ShelfMutation.js ~ line 25 ~ updateShelf: ~ findShelf", findShelf)
+
             if (!findShelf) {
                 throw new Error("Cannot Find shelf")
             }
@@ -45,4 +45,24 @@ module.exports = {
             throw error
         }
     },
+
+    deleteShelfById: async (parent, {_id}, ctx, info) => {
+        try {
+            const findShelf = await BookShelfs.findById({ _id: _id })
+            if (!findShelf) {
+                throw new Error("Cannot find bookshelf")
+            }
+
+            const deleteShelf = await BookShelfs.deleteOne({ _id: findShelf._id })
+            if (!deleteShelf) {
+                throw new Error("cannot delete bookshelf")
+            }
+
+            return {
+                _id
+            }
+        } catch (error) {
+            throw error
+        }
+    }
 }

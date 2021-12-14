@@ -14,7 +14,8 @@ const joinBookAndBookShelf      = wrapper.joinBookAndBookShelf;
 const replaceIdBook             = wrapper.replaceIdBook;
 
 const createShelf               = wrapper.createShelf;
-const updateShelf               = wrapper.updateShelf
+const updateShelf               = wrapper.updateShelf;
+const deleteShelfById           = wrapper.deleteShelfById
 
 const createBook                = wrapper.createBook;
 const updateBook                = wrapper.updateBook;
@@ -42,7 +43,8 @@ const schema = makeExecutableSchema({
             deleteBook,
 
             createShelf,
-            updateShelf
+            updateShelf,
+            deleteShelfById
         }
     }
 })

@@ -2,7 +2,7 @@ const { makeExecutableSchema } = require("graphql-tools");
 
 const wrapper = require("./resolvers");
 
-const schemaBook = require("./typeDefs/BookTypeDefs");
+const schema = require("./typeDefs/typeDefs");
 
 const books = wrapper.books;
 const getBookByYear = wrapper.getBookByYear;
@@ -22,7 +22,7 @@ const updateBook = wrapper.updateBook;
 const deleteBook = wrapper.deleteBook;
 
 const schema = makeExecutableSchema({
-  typeDefs: [schemaBook],
+  typeDefs: [schema],
 
   resolvers: {
     Query: {

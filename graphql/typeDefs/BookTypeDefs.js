@@ -1,14 +1,30 @@
 const typeDefs = `
     type Mutation {
-        createBook(data: CreateBookInput): Book!
-        deleteBook(id: ID!): DeleteRespon!
-        updateBook(id: ID!, data: UpdateBookInput!): Book!
+        createBook(_id: ID!, data: CreateBookInput): Book!
+        deleteBook(_id: ID!): DeleteRespon!
+        updateBook(_id: ID!, data: UpdateBookInput!): Book!
+
+        createShelf(data: CreateShelfInput): BookShelfs!
+        deleteShelfById(_id: ID!): DeleteShelf!
+        updateShelf(_id: ID!, data: UpdateShelfInput!): BookShelfs!
+    }
+    
+    input BookIdByAddFieldsInput {
+        bookId: ID!
+    }
+
+    type ResponAddFields {
+        bookId: [BookCollect!]
     }
 
     input CreateBookInput {
         bookName: String!
         author: String!
-        year: Int
+        year: Int!
+    }
+
+    input CreateShelfInput {
+        shelfName: String!
     }
 
     input UpdateBookInput {
@@ -17,19 +33,65 @@ const typeDefs = `
         year: Int
     }
 
+    input UpdateShelfInput {
+        shelfName: String!
+    }
+
     type DeleteRespon {
-        id: ID!
+        _id: ID!
+    }
+
+    type DeleteShelf {
+        _id: ID!
+    }
+
+    type ProjectRespon {
+        authorOfBook: String!
+        year: Int!
+        yearGt: Boolean!
+    }
+
+    type BookCollect {
+        _id: ID!
+        bookName: String!
+        author: String!
+        year: Int!
+    }
+
+    type splitBook {
+        _id: ID!
+        shelfName: String!
+        bookId: ID!
     }
 
     type Book {
-        id: ID!
+        _id: ID!
         bookName: String!
         author: String!
-        year: Int
+        year: Int!
+        shelfId: ID
+    }
+
+    type BookShelfs {
+        _id: ID!
+        shelfName: String!
+        bookId: [BookCollect!]
+    }
+
+    type JoinLookUp {
+        _id: ID!
+        bookId: [Book!]
+        shelfName: String!
     }
 
     type Query {
-        books: [Book]
+        books(limit: Int, offset: Int): [Book!]
+        shelfs: [BookShelfs!]!
+        getBookByYear(year: Int!): [ProjectRespon!]!
+        splitBookAtBookShelfs: [splitBook!]!
+        getBookByBookName(bookName: String!): [BookCollect!]!
+        joinBookAndBookShelf: [JoinLookUp!]!
+        replaceIdBook: [Book!]!
     }
 `;
 

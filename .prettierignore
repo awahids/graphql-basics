@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+coverage
+
+{
+    # prettier-ignore
+    addReaction(input:{superLongInputFieldName:"MDU6SXNzdWUyMzEzOTE1NTE=",content:HOORAY}) {
+        reaction {content}
+    }
+}

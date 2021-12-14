@@ -3,13 +3,22 @@ const bookshelfsModel = require("../../../models/bookshelfs.model");
 
 module.exports = {
   books: async (parents, { limit, offset }, ctx, info) => {
+    if (!ctx.user) {
+      return {
+        data: [],
+        error: "Unauthenticated",
+      };
+    }
     try {
       const books = await Book.find({})
         .limit(parseInt(limit))
         .skip(parseInt(offset))
         .exec();
 
-      return books;
+      return {
+        data: books,
+        error: "",
+      };
     } catch (error) {
       throw error;
     }

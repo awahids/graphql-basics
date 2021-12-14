@@ -9,10 +9,11 @@ const typeDefs = `
         updateShelf(_id: ID!, data: UpdateShelfInput!): BookShelfs!
 
         signUp(data: SignUpInput): User!
+        signIn(data: SignInInput): SignIn!
     }
 
     type Query {
-        books(limit: Int, offset: Int): [Book!]
+        books(limit: Int, offset: Int): BookData
         shelfs: [BookShelfs!]!
         getBookByYear(year: Int!): [ProjectRespon!]!
         splitBookAtBookShelfs: [splitBook!]!
@@ -84,6 +85,11 @@ const typeDefs = `
         shelfId: ID
     }
 
+    type BookData {
+        data: [Book]
+        error: String
+    }
+
     type BookShelfs {
         _id: ID!
         shelfName: String!
@@ -103,10 +109,19 @@ const typeDefs = `
         password: String!
     }
 
+    type SignIn {
+        token: String!
+    }
+
     input SignUpInput {
         email: String!
         password: String!
         name: String!
+    }
+
+    input SignInInput {
+        email: String!
+        password: String!
     }
 `;
 

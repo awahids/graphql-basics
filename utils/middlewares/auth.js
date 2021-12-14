@@ -1,27 +1,17 @@
 const Jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 module.exports = {
-  authToken: async (req, res, next) => {
-    const bearerToken = req.header("Authorization");
+  getUser: (token) => {
     try {
-      const token = bearerToken.replace("Bearer ", "");
-      Jwt.verify(token, process.env.PWD_TOKEN, (err, res) => {
-        if (err) {
-          return res.status(401).json({
-            status: "failed",
-            message: "Unauthorized",
-          });
-        }
-        // req.user = res;
-        req.user = {_id: "61a75364d7f91f010c5d13e9"}
-        next();
-      });
+      let decoded = null;
+      if (token) {
+        decoded = Jwt.verify(token, process.env.PWD_TOKEN);
+      }
+
+      return decoded;
     } catch (error) {
-      console.log("🚀 ~ file: auth.js ~ line 19 ~ authToken: ~ error", error);
-      res.status(401).json({
-        status: "failed",
-        message: "Please Log in or register",
-      });
+      throw error;
     }
   },
 };

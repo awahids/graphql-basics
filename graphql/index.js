@@ -21,7 +21,8 @@ const createBook = wrapper.createBook;
 const updateBook = wrapper.updateBook;
 const deleteBook = wrapper.deleteBook;
 
-const signUp = wrapper.signUp
+const signUp = wrapper.signUp;
+const signIn = wrapper.signIn;
 
 const schema = makeExecutableSchema({
   typeDefs: [schemaIndex],
@@ -46,7 +47,8 @@ const schema = makeExecutableSchema({
       updateShelf,
       deleteShelfById,
 
-      signUp
+      signUp,
+      signIn,
     },
   },
 });

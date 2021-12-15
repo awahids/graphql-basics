@@ -11,7 +11,7 @@ module.exports = {
       const findUser = await Users.findOne({ email: email });
 
       if (findUser) {
-        throw new Error(`${data.email} already taken`);
+        throw new Error(`${email} already taken`);
       }
 
       const hashPassword = await authHash(password);
@@ -33,10 +33,6 @@ module.exports = {
   signIn: async (parent, args, ctx, info) => {
     try {
       const findUser = await Users.findOne({ email: args.data.email });
-      console.log(
-        "🚀 ~ file: authMutation.js ~ line 36 ~ signIn: ~ findUser",
-        findUser
-      );
       if (!findUser) {
         throw new Error("email cannot found");
       }
@@ -44,10 +40,6 @@ module.exports = {
       const checkPassword = await Bcrypt.compare(
         args.data.password,
         findUser.password
-      );
-      console.log(
-        "🚀 ~ file: authMutation.js ~ line 45 ~ signIn: ~ checkPassword",
-        checkPassword
       );
 
       if (!checkPassword) {
@@ -58,10 +50,6 @@ module.exports = {
         email: findUser.email,
         id: findUser._id,
       };
-      console.log(
-        "🚀 ~ file: authMutation.js ~ line 55 ~ signIn: ~ payload",
-        payload
-      );
 
       const token = Jwt.sign(payload, process.env.PWD_TOKEN, {
         expiresIn: 3600 * 24,
@@ -69,6 +57,7 @@ module.exports = {
 
       return { token };
     } catch (error) {
+      console.log("🚀 ~ file: authMutation.js ~ line 60 ~ signIn: ~ error", error)
       throw error;
     }
   },

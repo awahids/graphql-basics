@@ -3,13 +3,6 @@ const {
   updateBook,
   deleteBook,
 } = require("./mutation/BookMutation");
-
-const {
-  createShelf,
-  updateShelf,
-  deleteShelfById,
-} = require("./mutation/ShelfMutation");
-
 const {
   books,
   getBookByYear,
@@ -17,7 +10,15 @@ const {
   joinBookAndBookShelf,
   replaceIdBook,
 } = require("./query/BookQuery");
+
+const {
+  createShelf,
+  updateShelf,
+  deleteShelfById,
+} = require("./mutation/ShelfMutation");
 const { shelfs, splitBookAtBookShelfs } = require("./query/BookShelfQuery");
+
+const { signUp, signIn } = require("./mutation/authMutation");
 
 module.exports = {
   books,
@@ -34,4 +35,7 @@ module.exports = {
   createShelf,
   updateShelf,
   deleteShelfById,
+
+  signUp,
+  signIn,
 };
